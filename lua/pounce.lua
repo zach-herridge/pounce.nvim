@@ -206,13 +206,7 @@ function M.pounce(opts, ns)
   local hl_prio = 65533
 
   local old_cmdheight = vim.o.cmdheight
-  if not opts.just_preview then
-    if old_cmdheight == 0 then
-      vim.o.cmdheight = 1
-      vim.cmd "redraw"
-    end
-  end
-
+  
   while true do
     local start_clock = os.clock()
 
@@ -333,9 +327,6 @@ function M.pounce(opts, ns)
     log.debug("Matching took " .. elapsed * 1000 .. "ms")
 
     if not opts.just_preview then
-      vim.api.nvim_echo({ { "pounce> ", "Keyword" }, { input } }, false, {})
-      vim.cmd "redraw"
-
       local ok, nr = pcall(vim.fn.getchar)
       if not ok then
         break
