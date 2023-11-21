@@ -327,6 +327,7 @@ function M.pounce(opts, ns)
     log.debug("Matching took " .. elapsed * 1000 .. "ms")
 
     if not opts.just_preview then
+      vim.cmd "redraw"
       local ok, nr = pcall(vim.fn.getchar)
       if not ok then
         break
